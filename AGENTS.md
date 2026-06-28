@@ -24,12 +24,13 @@ Reusable AI skills.
 
 Skills teach AI assistants how to perform specific engineering tasks.
 
-Examples include:
+Examples:
 
-* Build a Fabric notebook
+* Build a Microsoft Fabric notebook
 * Review SQL
 * Design a semantic model
 * Build a dbt model
+* Optimize PostgreSQL queries
 
 ### playbooks/
 
@@ -39,19 +40,21 @@ Playbooks combine multiple skills into repeatable delivery processes.
 
 ### standards/
 
-Engineering standards, conventions, and architectural decisions.
+Engineering standards, architectural decisions, naming conventions, coding standards, and implementation guidance.
 
 ### templates/
 
-Reusable starting points.
+Reusable starting points for projects, documentation, notebooks, SQL, and code.
 
 ### examples/
 
 Production-quality reference implementations.
 
+Examples should represent best practices and production-ready solutions.
+
 ### tools/
 
-Utilities that belong to the framework itself.
+Framework utilities and reusable tooling.
 
 ---
 
@@ -62,16 +65,18 @@ Contains installer and maintenance scripts.
 Current installers include:
 
 * install-framework.sh
+* update-framework.sh
 * install-fabric-skills.sh
 * install-postgres-ai.sh
 * install-dbt-ai.sh
 * install-databricks-skills.sh
+* install-power-bi-ai.sh
 
 ---
 
 # Installer Rules
 
-Always prefer the master installer.
+Always use the master installer whenever practical.
 
 Examples:
 
@@ -80,6 +85,7 @@ Examples:
 ./scripts/install-framework.sh --postgres
 ./scripts/install-framework.sh --dbt
 ./scripts/install-framework.sh --databricks
+./scripts/install-framework.sh --power-bi
 ./scripts/install-framework.sh --all
 ```
 
@@ -89,19 +95,43 @@ Do not install technologies that are unrelated to the current engagement.
 
 ---
 
-# Vendor Integration Rules
+# Vendor Integration Principles
 
-Installers should ONLY use official installation methods provided by the technology vendor whenever they exist.
+The AI Framework is an orchestrator—not a vendor distribution.
 
-Do not recreate, fork, vendor, or modify official vendor AI tooling unless explicitly directed.
+Whenever official AI tooling exists for a technology, installers must use the vendor's official installation method.
 
-Vendor repositories should remain external dependencies and should be updated from their official upstream sources.
+Examples include:
 
-Community tooling should only be used when:
+* Microsoft Fabric Skills
+* PostgreSQL AI (Timescale pg-aiguide)
+* dbt AI
+* Databricks Agent Skills
+* Microsoft Power BI AI
 
-* no official vendor solution exists,
-* it is actively maintained,
-* and it has been intentionally approved for inclusion in this framework.
+Do not recreate, fork, vendor, or modify official vendor tooling unless explicitly directed.
+
+Vendor repositories should remain external dependencies whenever practical.
+
+Installers should always retrieve the latest supported version from the official vendor whenever possible.
+
+---
+
+# Agent Configuration
+
+Do not configure agent-specific settings unless explicitly requested.
+
+This includes, but is not limited to:
+
+* MCP server configuration
+* Codex configuration
+* Claude configuration
+* Cursor configuration
+* GitHub Copilot configuration
+* Editor-specific settings
+* Local AI agent configuration files
+
+These configurations should remain the responsibility of the vendor's official installer and documentation.
 
 ---
 
@@ -123,3 +153,5 @@ Prefer referencing existing documentation over creating multiple sources of trut
 Favor official vendor documentation over community articles whenever practical.
 
 Treat this framework as a long-lived engineering asset rather than a project-specific repository.
+
+Prefer reusable, technology-agnostic solutions unless a client-specific implementation is required.
