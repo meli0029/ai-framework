@@ -11,14 +11,12 @@ require_node
 echo ""
 echo "This installer uses the official Timescale pg-aiguide installer."
 echo ""
-echo "Recommended agent selections:"
-echo "  - Codex"
-echo "  - Claude Code"
-echo "  - Cursor"
-echo "  - GitHub Copilot"
+echo "Recommended installation:"
+echo "  - Universal (.agents/skills)"
+echo "  - Global scope"
 echo ""
-echo "The vendor installer may also select universal/default agent targets."
-echo "That is expected."
+echo "These skills are reusable across client repositories."
+echo "Client-specific knowledge belongs in the client's AI Framework folder."
 echo ""
 echo "Launching official installer..."
 echo ""
@@ -26,13 +24,5 @@ echo ""
 npx skills add timescale/pg-aiguide --skill postgres
 
 echo ""
-echo "Registering PostgreSQL documentation MCP with Codex, if available..."
-
-if has_codex; then
-  codex mcp add --url "https://mcp.tigerdata.com/docs" pg-aiguide || true
-else
-  echo "Codex CLI not found. Skipping Codex MCP registration."
-fi
-
-echo ""
-echo "PostgreSQL AI tooling installed."
+echo "PostgreSQL AI tooling installed successfully."
+echo "Any additional agent configuration should follow the vendor's official documentation."
