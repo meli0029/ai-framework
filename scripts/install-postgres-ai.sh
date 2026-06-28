@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Installing PostgreSQL AI tooling..."
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib/common.sh"
 
-if ! command -v npx >/dev/null 2>&1; then
-  echo "npx is required. Install Node.js/npm first."
-  exit 1
-fi
+log_section "Installing PostgreSQL AI Tooling"
+
+require_node
 
 npx skills add timescale/pg-aiguide --skill postgres
 
-if command -v codex >/dev/null 2>&1; then
+if has_codex; then
   codex mcp add --url "https://mcp.tigerdata.com/docs" pg-aiguide || true
 else
   echo "Codex CLI not found. Skipping MCP registration."

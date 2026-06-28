@@ -1,94 +1,53 @@
-# AI Framework
+# AI Framework Agent Instructions
 
-This repository is a reusable AI-assisted engineering framework.
+This repository provides the reusable AI engineering framework used across multiple client implementations.
 
-The goal is to provide a repeatable foundation for client implementations across multiple technologies including Microsoft Fabric, PostgreSQL, dbt, Databricks, Snowflake, Python, Power BI, and future platforms.
+Your role is to preserve consistency, maximize reuse, and leverage official vendor AI capabilities whenever available.
 
 ---
 
-# Repository Structure
+# Repository Layout
 
 ## AI Framework/
 
-Contains reusable engineering knowledge.
+Contains reusable engineering assets.
 
 ### knowledge/
 
-Reference material.
+Reference documentation.
 
-Contains wiki-style documentation explaining technologies, concepts, architectures, and implementation details.
-
-Examples:
-
-- Fabric Lakehouses
-- Medallion Architecture
-- PostgreSQL Indexing
-- dbt Incremental Models
-
----
+Contains wiki-style engineering knowledge describing technologies, concepts, architectures, implementation guidance, and reference material.
 
 ### skills/
 
 Reusable AI skills.
 
-Skills teach the AI how to perform a specific task.
+Skills teach AI assistants how to perform specific engineering tasks.
 
-Examples:
+Examples include:
 
-- Build a Fabric notebook
-- Review SQL
-- Design a semantic model
-- Create a dbt model
-
----
+* Build a Fabric notebook
+* Review SQL
+* Design a semantic model
+* Build a dbt model
 
 ### playbooks/
 
-End-to-end workflows.
+End-to-end engineering workflows.
 
 Playbooks combine multiple skills into repeatable delivery processes.
 
-Examples:
-
-- New Microsoft Fabric Client
-- New dbt Project
-- Lakehouse Implementation
-
----
-
 ### standards/
 
-Engineering standards and conventions.
-
-Examples:
-
-- Naming standards
-- SQL style
-- Python style
-- Repository layout
-- Documentation standards
-
----
+Engineering standards, conventions, and architectural decisions.
 
 ### templates/
 
 Reusable starting points.
 
-Examples:
-
-- README templates
-- Notebook templates
-- Project templates
-
----
-
 ### examples/
 
-Production-quality examples.
-
-Examples should demonstrate best practices.
-
----
+Production-quality reference implementations.
 
 ### tools/
 
@@ -100,54 +59,67 @@ Utilities that belong to the framework itself.
 
 Contains installer and maintenance scripts.
 
-Scripts are responsible for installing AI capabilities and maintaining the framework.
+Current installers include:
 
-Current installers:
-
-- install-framework.sh
-- install-fabric-skills.sh
-- install-postgres-ai.sh
-- install-dbt-ai.sh
-- install-databricks-skills.sh
+* install-framework.sh
+* install-fabric-skills.sh
+* install-postgres-ai.sh
+* install-dbt-ai.sh
+* install-databricks-skills.sh
 
 ---
 
 # Installer Rules
 
-Use the master installer whenever possible.
+Always prefer the master installer.
 
 Examples:
 
+```bash
 ./scripts/install-framework.sh --fabric
-
 ./scripts/install-framework.sh --postgres
-
 ./scripts/install-framework.sh --dbt
-
 ./scripts/install-framework.sh --databricks
-
 ./scripts/install-framework.sh --all
+```
 
-Only install technologies that are relevant to the current client.
+Install only the technologies required for the current client implementation.
 
-Do not install PostgreSQL tooling for a Microsoft Fabric-only client.
-
-Do not install Databricks tooling unless Databricks is being used.
+Do not install technologies that are unrelated to the current engagement.
 
 ---
 
-# General Behavior
+# Vendor Integration Rules
 
-Prefer existing framework knowledge before inventing new content.
+Installers should ONLY use official installation methods provided by the technology vendor whenever they exist.
 
-When adding knowledge:
+Do not recreate, fork, vendor, or modify official vendor AI tooling unless explicitly directed.
 
-- Place conceptual documentation in knowledge.
-- Place reusable procedures in skills.
-- Place end-to-end workflows in playbooks.
-- Place engineering opinions in standards.
-- Place reusable skeletons in templates.
-- Place production examples in examples.
+Vendor repositories should remain external dependencies and should be updated from their official upstream sources.
 
-Avoid duplicating information across folders.
-Reference existing documents whenever possible.
+Community tooling should only be used when:
+
+* no official vendor solution exists,
+* it is actively maintained,
+* and it has been intentionally approved for inclusion in this framework.
+
+---
+
+# Framework Behavior
+
+When adding content:
+
+* Place conceptual documentation in `knowledge`.
+* Place reusable task guidance in `skills`.
+* Place end-to-end workflows in `playbooks`.
+* Place engineering conventions and architectural decisions in `standards`.
+* Place reusable starting points in `templates`.
+* Place production-quality reference implementations in `examples`.
+
+Avoid duplicating information.
+
+Prefer referencing existing documentation over creating multiple sources of truth.
+
+Favor official vendor documentation over community articles whenever practical.
+
+Treat this framework as a long-lived engineering asset rather than a project-specific repository.

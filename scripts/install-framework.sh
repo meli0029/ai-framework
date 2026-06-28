@@ -5,52 +5,38 @@ INSTALL_FABRIC=false
 INSTALL_POSTGRES=false
 INSTALL_DBT=false
 INSTALL_DATABRICKS=false
+INSTALL_POWER_BI=false
 INSTALL_ALL=false
 
 show_help() {
-  cat <<EOF
-AI Framework Installer
-
-Usage:
-  ./scripts/install-framework.sh [options]
-
-Options:
-  --fabric        Install Microsoft Fabric skills
-  --postgres      Install PostgreSQL AI tooling
-  --dbt           Install dbt AI tooling
-  --databricks    Install Databricks skills
-  --all           Install everything supported
-  --help, -h      Show this help
-
-Examples:
-  ./scripts/install-framework.sh --fabric
-  ./scripts/install-framework.sh --fabric --dbt
-  ./scripts/install-framework.sh --all
-EOF
+  echo "AI Framework Installer"
+  echo ""
+  echo "Usage:"
+  echo "  ./scripts/install-framework.sh [options]"
+  echo ""
+  echo "Options:"
+  echo "  --fabric        Install Microsoft Fabric Skills"
+  echo "  --postgres      Install PostgreSQL AI tooling"
+  echo "  --dbt           Install dbt AI tooling"
+  echo "  --databricks    Install Databricks Skills"
+  echo "  --power-bi      Install Power BI AI tooling"
+  echo "  --all           Install every supported integration"
+  echo "  --help, -h      Show this help"
 }
 
-if [ "$#" -eq 0 ]; then
+if [ $# -eq 0 ]; then
   show_help
   exit 0
 fi
 
-while [[ "$#" -gt 0 ]]; do
+while [[ $# -gt 0 ]]; do
   case "$1" in
-    --fabric)
-      INSTALL_FABRIC=true
-      ;;
-    --postgres)
-      INSTALL_POSTGRES=true
-      ;;
-    --dbt)
-      INSTALL_DBT=true
-      ;;
-    --databricks)
-      INSTALL_DATABRICKS=true
-      ;;
-    --all)
-      INSTALL_ALL=true
-      ;;
+    --fabric) INSTALL_FABRIC=true ;;
+    --postgres) INSTALL_POSTGRES=true ;;
+    --dbt) INSTALL_DBT=true ;;
+    --databricks) INSTALL_DATABRICKS=true ;;
+    --power-bi) INSTALL_POWER_BI=true ;;
+    --all) INSTALL_ALL=true ;;
     --help|-h)
       show_help
       exit 0
@@ -67,32 +53,29 @@ done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "======================================="
-echo " Installing AI Framework"
-echo "======================================="
+echo ""
+echo "=========================================="
+echo " AI Framework Installation"
+echo "=========================================="
 
-if [ "$INSTALL_ALL" = true ] || [ "$INSTALL_FABRIC" = true ]; then
-  echo ""
-  echo "Installing Microsoft Fabric skills..."
+if [[ "$INSTALL_ALL" == true || "$INSTALL_FABRIC" == true ]]; then
   "$SCRIPT_DIR/install-fabric-skills.sh"
 fi
 
-if [ "$INSTALL_ALL" = true ] || [ "$INSTALL_POSTGRES" = true ]; then
-  echo ""
-  echo "Installing PostgreSQL AI tooling..."
+if [[ "$INSTALL_ALL" == true || "$INSTALL_POSTGRES" == true ]]; then
   "$SCRIPT_DIR/install-postgres-ai.sh"
 fi
 
-if [ "$INSTALL_ALL" = true ] || [ "$INSTALL_DBT" = true ]; then
-  echo ""
-  echo "Installing dbt AI tooling..."
+if [[ "$INSTALL_ALL" == true || "$INSTALL_DBT" == true ]]; then
   "$SCRIPT_DIR/install-dbt-ai.sh"
 fi
 
-if [ "$INSTALL_ALL" = true ] || [ "$INSTALL_DATABRICKS" = true ]; then
-  echo ""
-  echo "Installing Databricks skills..."
+if [[ "$INSTALL_ALL" == true || "$INSTALL_DATABRICKS" == true ]]; then
   "$SCRIPT_DIR/install-databricks-skills.sh"
+fi
+
+if [[ "$INSTALL_ALL" == true || "$INSTALL_POWER_BI" == true ]]; then
+  "$SCRIPT_DIR/install-power-bi-ai.sh"
 fi
 
 echo ""
