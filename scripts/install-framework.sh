@@ -8,7 +8,9 @@ show_help() {
   echo "  ./scripts/install-framework.sh [options]"
   echo ""
   echo "Options:"
+  echo "  --framework-skills  Install this repository's reusable Codex skills"
   echo "  --fabric        Install Microsoft Fabric Skills"
+  echo "  --fabric-tools  Check/install Fabric CLI workstation prerequisites"
   echo "  --help, -h      Show this help"
 }
 
@@ -21,8 +23,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --framework-skills)
+      "$SCRIPT_DIR/install-framework-skills.sh"
+      ;;
     --fabric)
       "$SCRIPT_DIR/install-fabric-skills.sh"
+      ;;
+    --fabric-tools)
+      "$SCRIPT_DIR/bootstrap-fabric-tools.sh" --install
       ;;
     --help|-h)
       show_help

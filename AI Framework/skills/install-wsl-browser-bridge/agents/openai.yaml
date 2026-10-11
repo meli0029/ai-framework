@@ -1,0 +1,4 @@
+interface:
+  display_name: "Install WSL Browser Bridge"
+  short_description: "Restore Windows browser opening from WSL"
+  default_prompt: "Use $install-wsl-browser-bridge to diagnose and fix browser URL opening from WSL."

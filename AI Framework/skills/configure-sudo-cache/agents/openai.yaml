@@ -1,0 +1,4 @@
+interface:
+  display_name: "Configure Sudo Cache"
+  short_description: "Safely reuse sudo authentication across terminals"
+  default_prompt: "Use $configure-sudo-cache to configure a bounded sudo credential cache without storing my password."

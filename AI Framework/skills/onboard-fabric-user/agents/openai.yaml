@@ -1,0 +1,4 @@
+interface:
+  display_name: "Onboard Fabric User"
+  short_description: "Prepare and verify a Fabric CLI workstation"
+  default_prompt: "Use $onboard-fabric-user to prepare this workstation and verify access to my configured Fabric workspace."

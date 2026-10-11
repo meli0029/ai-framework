@@ -1,0 +1,26 @@
+# Local Fabric configuration (the example remains tracked)
+config/fabric.env
+config/*.local
+
+# Authentication and secrets
+.azure/
+*.token
+*.pem
+*.key
+.env
+.env.*
+!.env.example
+
+# Python and editor artifacts
+__pycache__/
+*.py[cod]
+.venv/
+.vscode/
+.idea/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Disposable local experiments
+scratch/
