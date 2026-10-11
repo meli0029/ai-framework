@@ -35,12 +35,7 @@ Contains the reusable engineering framework that can be incorporated into client
 
 Contains installer and maintenance scripts responsible for installing and maintaining supported AI integrations.
 
-Examples include:
-
-* Microsoft Fabric Skills
-* PostgreSQL AI
-* dbt AI
-* Databricks Skills
+Supported entry points and setup instructions are maintained in the [repository README](../README.md).
 
 ## AGENTS.md
 

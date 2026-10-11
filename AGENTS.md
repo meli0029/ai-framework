@@ -62,31 +62,16 @@ Framework utilities and reusable tooling.
 
 Contains installer and maintenance scripts.
 
-Current installers include:
-
-* install-framework.sh
-* update-framework.sh
-* install-fabric-skills.sh
-* install-postgres-ai.sh
-* install-dbt-ai.sh
-* install-databricks-skills.sh
-* install-power-bi-ai.sh
-
----
+Current installers include the Bash and PowerShell master installers, Fabric tool bootstrap helpers, the framework skill installer, and the official Fabric skill wrapper. Check each installer's help for supported options.
 
 # Installer Rules
 
-Always use the master installer whenever practical.
-
-Examples:
+Use the master installer whenever practical:
 
 ```bash
+./scripts/install-framework.sh --framework-skills
+./scripts/install-framework.sh --fabric-tools
 ./scripts/install-framework.sh --fabric
-./scripts/install-framework.sh --postgres
-./scripts/install-framework.sh --dbt
-./scripts/install-framework.sh --databricks
-./scripts/install-framework.sh --power-bi
-./scripts/install-framework.sh --all
 ```
 
 Install only the technologies required for the current client implementation.
@@ -155,3 +140,11 @@ Favor official vendor documentation over community articles whenever practical.
 Treat this framework as a long-lived engineering asset rather than a project-specific repository.
 
 Prefer reusable, technology-agnostic solutions unless a client-specific implementation is required.
+
+# Repository boundaries and Fabric work
+
+Read `README.md` and `CONTRIBUTING.md` before changing this framework. Keep client inventories, operational code, identifiers, and execution records in client repositories. Do not cherry-pick mixed client commits wholesale.
+
+Before Fabric actions, read the client repository's guardrails and `AI Framework/standards/fabric/change-control.md`. Confirm tenant, exact workspace/item IDs, environment role, and action-specific authorization. Treat production as read-only by default. A request to edit files does not authorize pushing, synchronizing, deploying, or running workloads.
+
+Before authoring notebooks, read `AI Framework/standards/fabric/notebook-development.md` and validate the exact proposed `.ipynb` using `scripts/validate-fabric-notebook.py`; add `--require-lakehouse` when applicable. Report validation limits and development test results. Read `AI Framework/standards/security-and-secret-handling.md`; never print or commit credentials.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Install and Connect Claude Code"
+  short_description: "Install Claude and verify Fabric MCP"
+  default_prompt: "Use $install-claude-code to install Claude Code, connect the local Fabric MCP server with Azure CLI authentication, and verify the expected tenant."
